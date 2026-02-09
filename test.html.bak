@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="plus-btn">+</button>
+    <button id="minus-btn">-</button>
+    <p id="count">0</p>
+
+    <script>
+      const buttonPlus = document.querySelector("#plus-btn");
+      const buttonMinus = document.querySelector("#minus-btn");
+
+      const display = document.querySelector("#count");
+
+      let count = 0;
+
+      function updateAmount(amount){
+        count += amount;
+        render();
+      }
+
+      buttonPlus.addEventListener("click", () => updateAmount(1));
+
+      buttonMinus.addEventListener("click", () => updateAmount(-1))
+
+      function render() {
+        display.textContent = count;
+      }
+      render();
+    </script>
+  </body>
+</html>

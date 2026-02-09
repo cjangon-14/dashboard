@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA Router Internal</title>
+    <!-- Importing the Inter font -->
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+    
+    <!-- INTERNAL CSS -->
+    <style>
+        :root {
+            --primary-color: #FA5E00;
+            --text-main: #212529;
+            --bg-color: #F4F6F8;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        nav a {
+            margin-right: 15px;
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer; /* Ensure links look clickable */
+        }
+
+        main#app-container {
+            padding: 2rem;
+        }
+
+        .page-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <!-- Links use data-href attribute to signal JS router to handle them -->
+        <a href="/" data-nav>Home</a>
+        <a href="/about" data-nav>About</a>
+        <a href="/contact" data-nav>Contact</a>
+    </nav>
+    
+    <!-- The container where all page content will be injected -->
+    <main id="app-container"></main>
+
+    <!-- INTERNAL JAVASCRIPT SCRIPT -->
+    <script>
+        // Define your routes (The 'pages' of your app)
+        const routes = {
+            '/': `
+                <h1 class="page-title">Home Page</h1>
+                <p>Welcome to the single-page application homepage! This content was loaded instantly by JavaScript.</p>
+            `,
+            '/about': `
+                <h1 class="page-title">About Us</h1>
+                <p>We are a modern company using native JavaScript routing!</p>
+                <p>Our mission is to create seamless user experiences without full page reloads.</p>
+            `,
+            '/contact': `
+                <h1 class="page-title">Contact Us</h1>
+                <p>Reach out via email or phone.</p>
+            `,
+        };
+
+        // Function to render the correct content based on the URL path
+        const handleLocation = () => {
+            const path = window.location.pathname;
+            const appContainer = document.getElementById('app-container');
+            
+            // Get content from routes, or a 404 page if not found
+            const content = routes[path] || '<h1>404 Page Not Found</h1>';
+            
+            appContainer.innerHTML = content;
+        };
+
+        // Function to handle link clicks (prevents full page reload)
+        const navigate = (event) => {
+            event.preventDefault(); // Stop the default link behavior
+            const href = event.target.getAttribute('href');
+            
+            // Update the browser URL using the History API
+            history.pushState(null, '', href); 
+            
+            // Render the new page content
+            handleLocation(); 
+        };
+
+        // Listen for the browser's back/forward button clicks
+        window.addEventListener('popstate', handleLocation);
+
+        // Initial page load handler:
+        document.addEventListener('DOMContentLoaded', () => {
+            // Attach the navigate function to all links that have the data-nav attribute
+            document.querySelectorAll('a[data-nav]').forEach(link => {
+                link.addEventListener('click', navigate);
+            });
+            handleLocation(); // Render the initial page content
+        });
+    </script>
+</body>
+</html>

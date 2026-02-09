@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .top-section {
+        background: linear-gradient(
+          to right,
+          #6a11cb,
+          #2575fc
+        ); /* Example gradient */
+        height: 350px; /* Example height */
+        position: relative; /* CRITICAL: Establishes a positioning context for the child */
+      }
+
+      .search-bar-container {
+        background-color: white; /* The white background of the bar */
+
+        /* --- CODE TO CENTER CONTENT --- */
+        display: flex;
+        justify-content: center; /* Centers horizontally */
+        align-items: center; /* Centers vertically */
+        /* --- END CENTERING CODE --- */
+
+        /* Position the element absolutely relative to its parent (.top-section) */
+        position: absolute;
+        bottom: -50px; /* CRITICAL: Moves it 50px outside and below the bottom edge of the parent */
+        left: 50%; /* Start from the middle horizontally */
+        transform: translateX(
+          -50%
+        ); /* CRITICAL: Pull it back 50% of its OWN width to perfectly center it */
+        width: 80%; /* Example width, adjust as needed */
+        /* Add s9yling: box-shadow, padding, border-radius */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        padding: 15px;
+        height: 100px; /* Added height so vertical centering is visible */
+      }
+
+      .bottom-section {
+        background-color: #f1f3f5; /* The light gray background */
+        /* Add padding to ensure content starts AFTER the search bar visually */
+        padding-top: 80px;
+        min-height: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-section">
+      Placeholder
+      <!-- Content like "Search low prices..." -->
+      <div class="search-bar-container">
+        Placeholder
+        <!-- Input fields and search button go here -->
+      </div>
+    </div>
+
+    <div class="bottom-section">
+      <!-- Content like "Browse by property type" and image grid -->
+    </div>
+  </body>
+</html>
