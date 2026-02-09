@@ -35,6 +35,9 @@ body.view-auth {
   min-height: 100vh;
   background-color: var(--bg-color);
   /* background-image: linear-gradient(to bottom right, #FFBF47, #FA5E00); */
+  
+  /* Controls the density/spacing of the grid */
+  background-size: 30px 30px;
 }
 html, body {
   height: 100%;

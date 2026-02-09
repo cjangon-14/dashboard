@@ -1,4 +1,4 @@
-//************~API METHOD~*************
+//************API METHOD*************
 
 // import { loginRequest } from "./api.js";
 // import { navigate } from "./router.js";
@@ -42,7 +42,7 @@
 //   navigate("/", true);
 // }
 
-//*****************~MOCK METHOD~*****************
+//*****************MOCK METHOD*****************
 import { navigate } from "./router.js";
 
 // Mock user database
